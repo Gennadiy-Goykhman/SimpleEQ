@@ -2,8 +2,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-//==============================================================================
-
 //Создание объекта класса SimpleEQAudioProcessor и проверка на стереопоточность
 SimpleEQAudioProcessor::SimpleEQAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
