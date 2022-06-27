@@ -1,4 +1,4 @@
-//Импортированный_код
+//Импортированный_код!
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
