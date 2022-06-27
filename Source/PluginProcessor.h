@@ -1,12 +1,12 @@
 /*
-    Заголовочный файл для аудиопроцессора реализованного с помощью фрейморка JUCE!
+    Р—Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р» РґР»СЏ Р°СѓРґРёРѕРїСЂРѕС†РµСЃСЃРѕСЂР° СЂРµР°Р»РёР·РѕРІР°РЅРЅРѕРіРѕ СЃ РїРѕРјРѕС‰СЊСЋ С„СЂРµР№РјРѕСЂРєР° JUCE!
 */
 
 #pragma once
 #include <JuceHeader.h>
 #include <array>
 
-//Импортированный код - начало
+//РРјРїРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РєРѕРґ - РЅР°С‡Р°Р»Рѕ
 template<typename T>
 struct Fifo
 {
@@ -69,28 +69,28 @@ private:
     std::array<T, Capacity> buffers;
     juce::AbstractFifo fifo {Capacity};
 };
-//Импортированный код - конец
+//РРјРїРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РєРѕРґ - РєРѕРЅРµС†
 
 
 
 
 enum Channel
 {
-    Right, //правый моно канал 0
-    Left //левый моноканал 1
+    Right, //РїСЂР°РІС‹Р№ РјРѕРЅРѕ РєР°РЅР°Р» 0
+    Left //Р»РµРІС‹Р№ РјРѕРЅРѕРєР°РЅР°Р» 1
 };
 
 template<typename BlockType>
 struct SingleChannelSampleFifo
 {
 
-    //Создание стека входа-выхода потока данных
+    //РЎРѕР·РґР°РЅРёРµ СЃС‚РµРєР° РІС…РѕРґР°-РІС‹С…РѕРґР° РїРѕС‚РѕРєР° РґР°РЅРЅС‹С…
     SingleChannelSampleFifo(Channel ch) : channelToUse(ch)
     {
         prepared.set(false);
     }
     
-    //Обновление информации о потоке
+    //РћР±РЅРѕРІР»РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РїРѕС‚РѕРєРµ
     void update(const BlockType& buffer)
     {
         jassert(prepared.get());
@@ -103,29 +103,29 @@ struct SingleChannelSampleFifo
         }
     }
 
-    //Подготовка стекового канала
+    //РџРѕРґРіРѕС‚РѕРІРєР° СЃС‚РµРєРѕРІРѕРіРѕ РєР°РЅР°Р»Р°
     void prepare(int bufferSize)
     {
         prepared.set(false);
         size.set(bufferSize);
         
-        bufferToFill.setSize(1,             //канал
-                             bufferSize,    //кол-во примеров
-                             false,         //сохранять ли существующишь контент
-                             true,          //очистить лишнее место
-                             true);         //избежать перенос данных
+        bufferToFill.setSize(1,             //РєР°РЅР°Р»
+                             bufferSize,    //РєРѕР»-РІРѕ РїСЂРёРјРµСЂРѕРІ
+                             false,         //СЃРѕС…СЂР°РЅСЏС‚СЊ Р»Рё СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС€СЊ РєРѕРЅС‚РµРЅС‚
+                             true,          //РѕС‡РёСЃС‚РёС‚СЊ Р»РёС€РЅРµРµ РјРµСЃС‚Рѕ
+                             true);         //РёР·Р±РµР¶Р°С‚СЊ РїРµСЂРµРЅРѕСЃ РґР°РЅРЅС‹С…
         audioBufferFifo.prepare(1, bufferSize);
         fifoIndex = 0;
         prepared.set(true);
     }
 
-    //Получение информации о свободных буферах
+    //РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ СЃРІРѕР±РѕРґРЅС‹С… Р±СѓС„РµСЂР°С…
     int getNumCompleteBuffersAvailable() const { return audioBufferFifo.getNumAvailableForReading(); }
    
-   //Канал подготовлен?
+   //РљР°РЅР°Р» РїРѕРґРіРѕС‚РѕРІР»РµРЅ?
     bool isPrepared() const { return prepared.get(); }
 
-    //Размер канала передачи
+    //Р Р°Р·РјРµСЂ РєР°РЅР°Р»Р° РїРµСЂРµРґР°С‡Рё
     int getSize() const { return size.get(); }
     //==============================================================================
     bool getAudioBuffer(BlockType& buf) { return audioBufferFifo.pull(buf); }
@@ -137,7 +137,7 @@ private:
     juce::Atomic<bool> prepared = false;
     juce::Atomic<int> size = 0;
     
-    //Добавление следующего элемента в канал
+    //Р”РѕР±Р°РІР»РµРЅРёРµ СЃР»РµРґСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р° РІ РєР°РЅР°Р»
     void pushNextSampleIntoFifo(float sample)
     {
         if (fifoIndex == bufferToFill.getNumSamples())
@@ -152,8 +152,8 @@ private:
     }
 };
 
-/**Класс перечисление спусков которые могут быть у звуковой дорожки,
-* они соответствуют 12/24/36/48 дБ/октаву соответственно **/
+/**РљР»Р°СЃСЃ РїРµСЂРµС‡РёСЃР»РµРЅРёРµ СЃРїСѓСЃРєРѕРІ РєРѕС‚РѕСЂС‹Рµ РјРѕРіСѓС‚ Р±С‹С‚СЊ Сѓ Р·РІСѓРєРѕРІРѕР№ РґРѕСЂРѕР¶РєРё,
+* РѕРЅРё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ 12/24/36/48 РґР‘/РѕРєС‚Р°РІСѓ СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ **/
 enum Slope
 {
     Slope_12,
@@ -163,7 +163,7 @@ enum Slope
 };
 
 
-/**Структура содержащая в себе настройки цепочки фильтрации звука**/
+/**РЎС‚СЂСѓРєС‚СѓСЂР° СЃРѕРґРµСЂР¶Р°С‰Р°СЏ РІ СЃРµР±Рµ РЅР°СЃС‚СЂРѕР№РєРё С†РµРїРѕС‡РєРё С„РёР»СЊС‚СЂР°С†РёРё Р·РІСѓРєР°**/
 struct ChainSettings
 {
     float peakFreq { 0 }, peakGainInDecibels{ 0 }, peakQuality {1.f};
@@ -173,17 +173,17 @@ struct ChainSettings
 };
 //
 
-//Настройка фильрации моноканала
+//РќР°СЃС‚СЂРѕР№РєР° С„РёР»СЊСЂР°С†РёРё РјРѕРЅРѕРєР°РЅР°Р»Р°
 ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
 using Filter = juce::dsp::IIR::Filter<float>;
 using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;
 using MonoChain = juce::dsp::ProcessorChain<CutFilter, Filter, CutFilter>;
 //
 
-/**Класс перечисления для параметров состояния цепи :
-* - Низкие частоты
-* - Пиковая частота
-* - Высокие частоты
+/**РљР»Р°СЃСЃ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ РґР»СЏ РїР°СЂР°РјРµС‚СЂРѕРІ СЃРѕСЃС‚РѕСЏРЅРёСЏ С†РµРїРё :
+* - РќРёР·РєРёРµ С‡Р°СЃС‚РѕС‚С‹
+* - РџРёРєРѕРІР°СЏ С‡Р°СЃС‚РѕС‚Р°
+* - Р’С‹СЃРѕРєРёРµ С‡Р°СЃС‚РѕС‚С‹
 **/
 enum ChainPositions
 {
@@ -192,14 +192,14 @@ enum ChainPositions
     HighCut
 };
 
-//Определенение цункций создания фильтра пиковой частоты и обновление коэфффициентов
-//Добавление элементов CoefficientsPtr из класса Filter
+//РћРїСЂРµРґРµР»РµРЅРµРЅРёРµ С†СѓРЅРєС†РёР№ СЃРѕР·РґР°РЅРёСЏ С„РёР»СЊС‚СЂР° РїРёРєРѕРІРѕР№ С‡Р°СЃС‚РѕС‚С‹ Рё РѕР±РЅРѕРІР»РµРЅРёРµ РєРѕСЌС„С„С„РёС†РёРµРЅС‚РѕРІ
+//Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ CoefficientsPtr РёР· РєР»Р°СЃСЃР° Filter
 using Coefficients = Filter::CoefficientsPtr;
 void updateCoefficients(Coefficients& old, const Coefficients& replacements);
 Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate);
 
 
-//Шаблонная функция позволяющая обновить информацию о коффициентах цепи
+//РЁР°Р±Р»РѕРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РїРѕР·РІРѕР»СЏСЋС‰Р°СЏ РѕР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РєРѕС„С„РёС†РёРµРЅС‚Р°С… С†РµРїРё
 template<int Index, typename ChainType, typename CoefficientType>
 void update(ChainType& chain, const CoefficientType& coefficients)
 {
@@ -207,8 +207,8 @@ void update(ChainType& chain, const CoefficientType& coefficients)
     chain.template setBypassed<Index>(false);
 }
 
-//Функция позволяет обновить данные высоких или же низких частот
-//В зависимости от передаваемого типа цепи
+//Р¤СѓРЅРєС†РёСЏ РїРѕР·РІРѕР»СЏРµС‚ РѕР±РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ РІС‹СЃРѕРєРёС… РёР»Рё Р¶Рµ РЅРёР·РєРёС… С‡Р°СЃС‚РѕС‚
+//Р’ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РїРµСЂРµРґР°РІР°РµРјРѕРіРѕ С‚РёРїР° С†РµРїРё
 template<typename ChainType, typename CoefficientType>
 void updateCutFilter(ChainType& chain,
                      const CoefficientType& coefficients,
@@ -241,7 +241,7 @@ void updateCutFilter(ChainType& chain,
 }
 
 
-//Встраиваемая(линейная, подставляемая) функция которая создаёт фильтра для низкочастотного диапозона
+//Р’СЃС‚СЂР°РёРІР°РµРјР°СЏ(Р»РёРЅРµР№РЅР°СЏ, РїРѕРґСЃС‚Р°РІР»СЏРµРјР°СЏ) С„СѓРЅРєС†РёСЏ РєРѕС‚РѕСЂР°СЏ СЃРѕР·РґР°С‘С‚ С„РёР»СЊС‚СЂР° РґР»СЏ РЅРёР·РєРѕС‡Р°СЃС‚РѕС‚РЅРѕРіРѕ РґРёР°РїРѕР·РѕРЅР°
 inline auto makeLowCutFilter(const ChainSettings& chainSettings, double sampleRate )
 {
     return juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(chainSettings.lowCutFreq,
@@ -249,7 +249,7 @@ inline auto makeLowCutFilter(const ChainSettings& chainSettings, double sampleRa
                                                                                2 * (chainSettings.lowCutSlope + 1));
 }
 
-//Встраиваемая(линейная, подставляемая) функция которая создаёт фильтра для высокочастотного диапозона
+//Р’СЃС‚СЂР°РёРІР°РµРјР°СЏ(Р»РёРЅРµР№РЅР°СЏ, РїРѕРґСЃС‚Р°РІР»СЏРµРјР°СЏ) С„СѓРЅРєС†РёСЏ РєРѕС‚РѕСЂР°СЏ СЃРѕР·РґР°С‘С‚ С„РёР»СЊС‚СЂР° РґР»СЏ РІС‹СЃРѕРєРѕС‡Р°СЃС‚РѕС‚РЅРѕРіРѕ РґРёР°РїРѕР·РѕРЅР°
 inline auto makeHighCutFilter(const ChainSettings& chainSettings, double sampleRate )
 { return juce::dsp::FilterDesign<float>::designIIRLowpassHighOrderButterworthMethod(chainSettings.highCutFreq,
                                                                                       sampleRate,
@@ -258,18 +258,18 @@ inline auto makeHighCutFilter(const ChainSettings& chainSettings, double sampleR
 
 
 
-//Класс отвечающий за определение аудио-процессора разрабатываемого Простого Эквалайзера
+//РљР»Р°СЃСЃ РѕС‚РІРµС‡Р°СЋС‰РёР№ Р·Р° РѕРїСЂРµРґРµР»РµРЅРёРµ Р°СѓРґРёРѕ-РїСЂРѕС†РµСЃСЃРѕСЂР° СЂР°Р·СЂР°Р±Р°С‚С‹РІР°РµРјРѕРіРѕ РџСЂРѕСЃС‚РѕРіРѕ Р­РєРІР°Р»Р°Р№Р·РµСЂР°
 class SimpleEQAudioProcessor  : public juce::AudioProcessor
 {
 public:
-    //Конструктор
+    //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     SimpleEQAudioProcessor();
-    //Деструктор
+    //Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
     ~SimpleEQAudioProcessor() override;
 
-    //Подготовка к проигрыванию
+    //РџРѕРґРіРѕС‚РѕРІРєР° Рє РїСЂРѕРёРіСЂС‹РІР°РЅРёСЋ
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
-    //Очитска ресурсов
+    //РћС‡РёС‚СЃРєР° СЂРµСЃСѓСЂСЃРѕРІ
     void releaseResources() override;
 
 
@@ -277,26 +277,26 @@ public:
     bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
    #endif
 
-    //Блокировка аудиопотока
+    //Р‘Р»РѕРєРёСЂРѕРІРєР° Р°СѓРґРёРѕРїРѕС‚РѕРєР°
     void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
 
-    //Создание редактора звука(самого эквалайзера) 
+    //РЎРѕР·РґР°РЅРёРµ СЂРµРґР°РєС‚РѕСЂР° Р·РІСѓРєР°(СЃР°РјРѕРіРѕ СЌРєРІР°Р»Р°Р№Р·РµСЂР°) 
     juce::AudioProcessorEditor* createEditor() override;
-    //Создан ли уже редактор
+    //РЎРѕР·РґР°РЅ Р»Рё СѓР¶Рµ СЂРµРґР°РєС‚РѕСЂ
     bool hasEditor() const override;
 
     //==============================================================================
-    //Получение имени продукта(эквалайзера)
+    //РџРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё РїСЂРѕРґСѓРєС‚Р°(СЌРєРІР°Р»Р°Р№Р·РµСЂР°)
     const juce::String getName() const override;
 
-    //учёт средних частот
+    //СѓС‡С‘С‚ СЃСЂРµРґРЅРёС… С‡Р°СЃС‚РѕС‚
     bool acceptsMidi() const override;
-    //Создание средних частот
+    //РЎРѕР·РґР°РЅРёРµ СЃСЂРµРґРЅРёС… С‡Р°СЃС‚РѕС‚
     bool producesMidi() const override;
-    //Имеется ли эффект создания средних частот
+    //РРјРµРµС‚СЃСЏ Р»Рё СЌС„С„РµРєС‚ СЃРѕР·РґР°РЅРёСЏ СЃСЂРµРґРЅРёС… С‡Р°СЃС‚РѕС‚
     bool isMidiEffect() const override;
 
-    //Получение времени конечной задержки звука(эхо-эффект)
+    //РџРѕР»СѓС‡РµРЅРёРµ РІСЂРµРјРµРЅРё РєРѕРЅРµС‡РЅРѕР№ Р·Р°РґРµСЂР¶РєРё Р·РІСѓРєР°(СЌС…Рѕ-СЌС„С„РµРєС‚)
     double getTailLengthSeconds() const override;
 
     //==============================================================================
@@ -306,35 +306,35 @@ public:
     const juce::String getProgramName (int index) override;
     void changeProgramName (int index, const juce::String& newName) override;
 
-    //Получение информации о состоянии блока памяти
+    //РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ СЃРѕСЃС‚РѕСЏРЅРёРё Р±Р»РѕРєР° РїР°РјСЏС‚Рё
     void getStateInformation (juce::MemoryBlock& destData) override;
-    //Установка состояния
+    //РЈСЃС‚Р°РЅРѕРІРєР° СЃРѕСЃС‚РѕСЏРЅРёСЏ
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 
-    //Создание разкладки параметров эквалайзера
+    //РЎРѕР·РґР°РЅРёРµ СЂР°Р·РєР»Р°РґРєРё РїР°СЂР°РјРµС‚СЂРѕРІ СЌРєРІР°Р»Р°Р№Р·РµСЂР°
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
-    //Дерево состояний значений аудио процессора
+    //Р”РµСЂРµРІРѕ СЃРѕСЃС‚РѕСЏРЅРёР№ Р·РЅР°С‡РµРЅРёР№ Р°СѓРґРёРѕ РїСЂРѕС†РµСЃСЃРѕСЂР°
     juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", createParameterLayout()};
     
     using BlockType = juce::AudioBuffer<float>;
     SingleChannelSampleFifo<BlockType> leftChannelFifo { Channel::Left };
     SingleChannelSampleFifo<BlockType> rightChannelFifo { Channel::Right };
 private:
-    //Левый моноканал, правый моноканал
+    //Р›РµРІС‹Р№ РјРѕРЅРѕРєР°РЅР°Р», РїСЂР°РІС‹Р№ РјРѕРЅРѕРєР°РЅР°Р»
     MonoChain leftChain, rightChain;
     
-    //Обновление фильтра высокой частоты
+    //РћР±РЅРѕРІР»РµРЅРёРµ С„РёР»СЊС‚СЂР° РІС‹СЃРѕРєРѕР№ С‡Р°СЃС‚РѕС‚С‹
     void updatePeakFilter(const ChainSettings& chainSettings);
 
     
     
-    //Обновление низкочастотных звуковых фильтров
+    //РћР±РЅРѕРІР»РµРЅРёРµ РЅРёР·РєРѕС‡Р°СЃС‚РѕС‚РЅС‹С… Р·РІСѓРєРѕРІС‹С… С„РёР»СЊС‚СЂРѕРІ
     void updateLowCutFilters(const ChainSettings& chainSettings);
-    //Обновление высокочастотных звуковых фильтров
+    //РћР±РЅРѕРІР»РµРЅРёРµ РІС‹СЃРѕРєРѕС‡Р°СЃС‚РѕС‚РЅС‹С… Р·РІСѓРєРѕРІС‹С… С„РёР»СЊС‚СЂРѕРІ
     void updateHighCutFilters(const ChainSettings& chainSettings);
-    //Обновление звуковых фильтров
+    //РћР±РЅРѕРІР»РµРЅРёРµ Р·РІСѓРєРѕРІС‹С… С„РёР»СЊС‚СЂРѕРІ
     void updateFilters();
     
     juce::dsp::Oscillator<float> osc;
