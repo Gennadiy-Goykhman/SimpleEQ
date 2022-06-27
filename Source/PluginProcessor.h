@@ -5,6 +5,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include <array>
+
 //Импортированный код - начало
 template<typename T>
 struct Fifo
@@ -69,6 +70,8 @@ private:
     juce::AbstractFifo fifo {Capacity};
 };
 //Импортированный код - конец
+
+
 
 
 enum Channel
