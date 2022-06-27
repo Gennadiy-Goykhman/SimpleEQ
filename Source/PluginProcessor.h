@@ -1,15 +1,11 @@
 /*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
+    Заголовочный файл для аудиопроцессора реализованного с помощью фрейморка JUCE
 */
 
 #pragma once
 #include <JuceHeader.h>
 #include <array>
-
+//Импортированный код - начало
 template<typename T>
 struct Fifo
 {
@@ -72,6 +68,8 @@ private:
     std::array<T, Capacity> buffers;
     juce::AbstractFifo fifo {Capacity};
 };
+//Импортированный код - конец
+
 
 enum Channel
 {
@@ -82,11 +80,14 @@ enum Channel
 template<typename BlockType>
 struct SingleChannelSampleFifo
 {
+
+    //Создание стека входа-выхода потока данных
     SingleChannelSampleFifo(Channel ch) : channelToUse(ch)
     {
         prepared.set(false);
     }
     
+    //Обновление информации о потоке
     void update(const BlockType& buffer)
     {
         jassert(prepared.get());
@@ -99,6 +100,7 @@ struct SingleChannelSampleFifo
         }
     }
 
+    //Подготовка стекового канала
     void prepare(int bufferSize)
     {
         prepared.set(false);
@@ -113,9 +115,14 @@ struct SingleChannelSampleFifo
         fifoIndex = 0;
         prepared.set(true);
     }
-    //==============================================================================
+
+    //Получение информации о свободных буферах
     int getNumCompleteBuffersAvailable() const { return audioBufferFifo.getNumAvailableForReading(); }
+   
+   //Канал подготовлен?
     bool isPrepared() const { return prepared.get(); }
+
+    //Размер канала передачи
     int getSize() const { return size.get(); }
     //==============================================================================
     bool getAudioBuffer(BlockType& buf) { return audioBufferFifo.pull(buf); }
@@ -127,14 +134,13 @@ private:
     juce::Atomic<bool> prepared = false;
     juce::Atomic<int> size = 0;
     
+    //Добавление следующего элемента в канал
     void pushNextSampleIntoFifo(float sample)
     {
         if (fifoIndex == bufferToFill.getNumSamples())
         {
             auto ok = audioBufferFifo.push(bufferToFill);
-
             juce::ignoreUnused(ok);
-            
             fifoIndex = 0;
         }
         
@@ -297,8 +303,9 @@ public:
     const juce::String getProgramName (int index) override;
     void changeProgramName (int index, const juce::String& newName) override;
 
-    //==============================================================================
+    //Получение информации о состоянии блока памяти
     void getStateInformation (juce::MemoryBlock& destData) override;
+    //Установка состояния
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 

@@ -1,15 +1,10 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
 //==============================================================================
+
+//Создание объекта класса SimpleEQAudioProcessor и проверка на стереопоточность
 SimpleEQAudioProcessor::SimpleEQAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
@@ -24,6 +19,7 @@ SimpleEQAudioProcessor::SimpleEQAudioProcessor()
 {
 }
 
+//Создание диструктора класса
 SimpleEQAudioProcessor::~SimpleEQAudioProcessor()
 {
 }
@@ -43,6 +39,7 @@ bool SimpleEQAudioProcessor::acceptsMidi() const
    #endif
 }
 
+//Создание средних частот
 bool SimpleEQAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
@@ -285,6 +282,7 @@ void SimpleEQAudioProcessor::updateLowCutFilters(const ChainSettings &chainSetti
     updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
 }
 
+//Функция обновления частотных фильтров
 void SimpleEQAudioProcessor::updateHighCutFilters(const ChainSettings &chainSettings)
 {
     auto highCutCoefficients = makeHighCutFilter(chainSettings, getSampleRate());
@@ -299,15 +297,27 @@ void SimpleEQAudioProcessor::updateHighCutFilters(const ChainSettings &chainSett
     updateCutFilter(rightHighCut, highCutCoefficients, chainSettings.highCutSlope);
 }
 
+//Функция обновления фильтров
 void SimpleEQAudioProcessor::updateFilters()
 {
     auto chainSettings = getChainSettings(apvts);
-    
+
     updateLowCutFilters(chainSettings);
     updatePeakFilter(chainSettings);
     updateHighCutFilters(chainSettings);
 }
 
+/**Инициализирует модель редактора и возвращает модель раскладки
+* 
+* Добавляет в выкладку ползунки для изменения:
+* - Низких частот
+* - Высоких частот
+* - усиление пиковой частоты
+* - Пиковое качество
+* - А также выключатели для этих параметров
+* 
+* - Также создаётся список дБ на октаву
+**/
 juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::createParameterLayout()
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
@@ -348,7 +358,6 @@ juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::crea
     
     layout.add(std::make_unique<juce::AudioParameterChoice>("LowCut Slope", "LowCut Slope", stringArray, 0));
     layout.add(std::make_unique<juce::AudioParameterChoice>("HighCut Slope", "HighCut Slope", stringArray, 0));
-    
     layout.add(std::make_unique<juce::AudioParameterBool>("LowCut Bypassed", "LowCut Bypassed", false));
     layout.add(std::make_unique<juce::AudioParameterBool>("Peak Bypassed", "Peak Bypassed", false));
     layout.add(std::make_unique<juce::AudioParameterBool>("HighCut Bypassed", "HighCut Bypassed", false));
@@ -358,7 +367,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::crea
 }
 
 //==============================================================================
-// This creates new instances of the plugin..
+// Создаёт новый объект плагина.
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new SimpleEQAudioProcessor();
