@@ -301,7 +301,11 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+
+    //Создание разкладки параметров эквалайзера
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+
+    //Дерево состояний значений аудио процессора
     juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", createParameterLayout()};
     
     using BlockType = juce::AudioBuffer<float>;
