@@ -1,4 +1,4 @@
-//Импортированный код
+//Импортированный_код
 #pragma once
 
 #include <JuceHeader.h>

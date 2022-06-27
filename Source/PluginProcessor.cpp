@@ -289,7 +289,7 @@ void SimpleEQAudioProcessor::updateLowCutFilters(const ChainSettings &chainSetti
     updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
 }
 
-//Функция обновления частотных фильтров
+//Функция обновления частотных фильтров//
 void SimpleEQAudioProcessor::updateHighCutFilters(const ChainSettings &chainSettings)
 {
     //Создание фильтра высоких частот
