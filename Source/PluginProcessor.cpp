@@ -28,7 +28,7 @@ const juce::String SimpleEQAudioProcessor::getName() const
     return JucePlugin_Name;
 }
 
-//Подключение входа MIDI
+//принятие MIDI
 bool SimpleEQAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
@@ -194,10 +194,9 @@ bool SimpleEQAudioProcessor::hasEditor() const
 }
 
 //Создание музыкального редактора
-juce::AudioProcessorEditor* SimpleEQAudioProcessor::createEditor()
-{
+juce::AudioProcessorEditor* SimpleEQAudioProcessor::createEditor(){
     //Передаём ссылка на объект AudioProcessor
-    return new SimpleEQAudioProcessorEditor (*this);
+    return new SimpleEQAudioProcessor(*this);
 }
 
 //==============================================================================
@@ -212,8 +211,7 @@ void SimpleEQAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 
 // Используется для восстановления сохранённых параметров из памяти
 // Которые были ранее созданы с помощью метода getStateInformation
-void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
-{
+void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBytes){
     auto tree = juce::ValueTree::readFromData(data, sizeInBytes);
     if( tree.isValid() )
     {

@@ -1,10 +1,4 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
+//Импортированный код
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
@@ -751,8 +745,7 @@ void SimpleEQAudioProcessorEditor::paint(juce::Graphics &g)
     
     g.setFont(Font("Iosevka Term Slab", 30, 0)); //https://github.com/be5invis/Iosevka
     
-    //String title { "PFM::C++ FOR MUSICIANS" };
-    String title{ "Gennadiy BIB216 EkvoLizer" };
+    String title { "PFM::C++ FOR MUSICIANS" };
     g.setFont(30);
     auto titleWidth = g.getCurrentFont().getStringWidth(title);
     

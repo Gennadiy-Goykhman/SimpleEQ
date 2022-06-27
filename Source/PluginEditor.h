@@ -1,11 +1,4 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
+//Импортированный код
 #pragma once
 
 #include <JuceHeader.h>
@@ -21,9 +14,6 @@ enum FFTOrder
 template<typename BlockType>
 struct FFTDataGenerator
 {
-    /**
-     produces the FFT data from an audio buffer.
-     */
     void produceFFTDataForRendering(const juce::AudioBuffer<float>& audioData, const float negativeInfinity)
     {
         const auto fftSize = getFFTSize();
@@ -31,20 +21,16 @@ struct FFTDataGenerator
         fftData.assign(fftData.size(), 0);
         auto* readIndex = audioData.getReadPointer(0);
         std::copy(readIndex, readIndex + fftSize, fftData.begin());
-        
-        // first apply a windowing function to our data
+       
         window->multiplyWithWindowingTable (fftData.data(), fftSize);       // [1]
         
-        // then render our FFT data..
         forwardFFT->performFrequencyOnlyForwardTransform (fftData.data());  // [2]
         
         int numBins = (int)fftSize / 2;
         
-        //normalize the fft values.
         for( int i = 0; i < numBins; ++i )
         {
             auto v = fftData[i];
-//            fftData[i] /= (float) numBins;
             if( !std::isinf(v) && !std::isnan(v) )
             {
                 v /= float(numBins);
@@ -55,8 +41,7 @@ struct FFTDataGenerator
             }
             fftData[i] = v;
         }
-        
-        //convert them to decibels
+
         for( int i = 0; i < numBins; ++i )
         {
             fftData[i] = juce::Decibels::gainToDecibels(fftData[i], negativeInfinity);
@@ -67,10 +52,7 @@ struct FFTDataGenerator
     
     void changeOrder(FFTOrder newOrder)
     {
-        //when you change order, recreate the window, forwardFFT, fifo, fftData
-        //also reset the fifoIndex
-        //things that need recreating should be created on the heap via std::make_unique<>
-        
+
         order = newOrder;
         auto fftSize = getFFTSize();
         
@@ -99,9 +81,7 @@ private:
 template<typename PathType>
 struct AnalyzerPathGenerator
 {
-    /*
-     converts 'renderData[]' into a juce::Path
-     */
+   
     void generatePath(const std::vector<float>& renderData,
                       juce::Rectangle<float> fftBounds,
                       int fftSize,
@@ -126,19 +106,17 @@ struct AnalyzerPathGenerator
 
         auto y = map(renderData[0]);
 
-//        jassert( !std::isnan(y) && !std::isinf(y) );
         if( std::isnan(y) || std::isinf(y) )
             y = bottom;
         
         p.startNewSubPath(0, y);
 
-        const int pathResolution = 2; //you can draw line-to's every 'pathResolution' pixels.
+        const int pathResolution = 2;
 
         for( int binNum = 1; binNum < numBins; binNum += pathResolution )
         {
             y = map(renderData[binNum]);
 
-//            jassert( !std::isnan(y) && !std::isinf(y) );
 
             if( !std::isnan(y) && !std::isinf(y) )
             {
@@ -324,7 +302,6 @@ public:
     void resized() override;
 
 private:
-    //Объект аудиопроцессора
     SimpleEQAudioProcessor& audioProcessor;
 
     
