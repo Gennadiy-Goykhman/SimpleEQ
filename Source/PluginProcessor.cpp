@@ -2,7 +2,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-//Создание объекта класса SimpleEQAudioProcessor и проверка на стереопоточность!
+//РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР° SimpleEQAudioProcessor Рё РїСЂРѕРІРµСЂРєР° РЅР° СЃС‚РµСЂРµРѕРїРѕС‚РѕС‡РЅРѕСЃС‚СЊ!
 SimpleEQAudioProcessor::SimpleEQAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
@@ -17,18 +17,18 @@ SimpleEQAudioProcessor::SimpleEQAudioProcessor()
 {
 }
 
-//Создание деструктора класса
+//РЎРѕР·РґР°РЅРёРµ РґРµСЃС‚СЂСѓРєС‚РѕСЂР° РєР»Р°СЃСЃР°
 SimpleEQAudioProcessor::~SimpleEQAudioProcessor()
 {
 }
 
-//Получение названия плагина
+//РџРѕР»СѓС‡РµРЅРёРµ РЅР°Р·РІР°РЅРёСЏ РїР»Р°РіРёРЅР°
 const juce::String SimpleEQAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-//принятие MIDI
+//РїСЂРёРЅСЏС‚РёРµ MIDI
 bool SimpleEQAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
@@ -38,7 +38,7 @@ bool SimpleEQAudioProcessor::acceptsMidi() const
    #endif
 }
 
-//Создание средних частот
+//РЎРѕР·РґР°РЅРёРµ СЃСЂРµРґРЅРёС… С‡Р°СЃС‚РѕС‚
 bool SimpleEQAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
@@ -48,7 +48,7 @@ bool SimpleEQAudioProcessor::producesMidi() const
    #endif
 }
 
-//Проверка на эффект от потока входа
+//РџСЂРѕРІРµСЂРєР° РЅР° СЌС„С„РµРєС‚ РѕС‚ РїРѕС‚РѕРєР° РІС…РѕРґР°
 bool SimpleEQAudioProcessor::isMidiEffect() const
 {
    #if JucePlugin_IsMidiEffect
@@ -58,46 +58,46 @@ bool SimpleEQAudioProcessor::isMidiEffect() const
    #endif
 }
 
-//Получение информации о задержке конца звуковой дорожки
+//РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ Р·Р°РґРµСЂР¶РєРµ РєРѕРЅС†Р° Р·РІСѓРєРѕРІРѕР№ РґРѕСЂРѕР¶РєРё
 double SimpleEQAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-//Кол-во использующих программ
+//РљРѕР»-РІРѕ РёСЃРїРѕР»СЊР·СѓСЋС‰РёС… РїСЂРѕРіСЂР°РјРј
 int SimpleEQAudioProcessor::getNumPrograms()
 {
     return 1;   
 }
 
-//Программа которая сейчас использует плагин
+//РџСЂРѕРіСЂР°РјРјР° РєРѕС‚РѕСЂР°СЏ СЃРµР№С‡Р°СЃ РёСЃРїРѕР»СЊР·СѓРµС‚ РїР»Р°РіРёРЅ
 int SimpleEQAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-//Установка выбранной программы
+//РЈСЃС‚Р°РЅРѕРІРєР° РІС‹Р±СЂР°РЅРЅРѕР№ РїСЂРѕРіСЂР°РјРјС‹
 void SimpleEQAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-//Получение названия использующей программы
+//РџРѕР»СѓС‡РµРЅРёРµ РЅР°Р·РІР°РЅРёСЏ РёСЃРїРѕР»СЊР·СѓСЋС‰РµР№ РїСЂРѕРіСЂР°РјРјС‹
 const juce::String SimpleEQAudioProcessor::getProgramName (int index)
 {
     return {};
 }
 
-//Смена имени использующей программы
+//РЎРјРµРЅР° РёРјРµРЅРё РёСЃРїРѕР»СЊР·СѓСЋС‰РµР№ РїСЂРѕРіСЂР°РјРјС‹
 void SimpleEQAudioProcessor::changeProgramName (int index, const juce::String& newName)
 {
 }
 
 //==============================================================================
-//Подготовка к проигрыванию трека
+//РџРѕРґРіРѕС‚РѕРІРєР° Рє РїСЂРѕРёРіСЂС‹РІР°РЅРёСЋ С‚СЂРµРєР°
 void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Производит всю. необходимую инициализацию
-    // Используется для пред настройки параметров
+    // РџСЂРѕРёР·РІРѕРґРёС‚ РІСЃСЋ. РЅРµРѕР±С…РѕРґРёРјСѓСЋ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ
+    // РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїСЂРµРґ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
     
     juce::dsp::ProcessSpec spec;
    
@@ -122,13 +122,13 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     osc.setFrequency(440);
 }
 
-//Освобождвет используемые ресурсы
+//РћСЃРІРѕР±РѕР¶РґРІРµС‚ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹
 void SimpleEQAudioProcessor::releaseResources()
 {
     
 }
 
-//Проверка поддержки выкладки
+//РџСЂРѕРІРµСЂРєР° РїРѕРґРґРµСЂР¶РєРё РІС‹РєР»Р°РґРєРё
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool SimpleEQAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
@@ -136,13 +136,13 @@ bool SimpleEQAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts)
     juce::ignoreUnused (layouts);
     return true;
   #else
-    // Проверяем поддержку выкладки
-    // Причём поддержка только моно или стерео потоков.
+    // РџСЂРѕРІРµСЂСЏРµРј РїРѕРґРґРµСЂР¶РєСѓ РІС‹РєР»Р°РґРєРё
+    // РџСЂРёС‡С‘Рј РїРѕРґРґРµСЂР¶РєР° С‚РѕР»СЊРєРѕ РјРѕРЅРѕ РёР»Рё СЃС‚РµСЂРµРѕ РїРѕС‚РѕРєРѕРІ.
     if (
         layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
         return false;
 
-    // Проверяет соответствие модели и отображения(view)
+    // РџСЂРѕРІРµСЂСЏРµС‚ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РјРѕРґРµР»Рё Рё РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ(view)
    #if ! JucePlugin_IsSynth
     if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
         return false;
@@ -153,25 +153,25 @@ bool SimpleEQAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts)
 }
 #endif
 
-//Обрабатывающий элемерт(тут и происходит вся магия)
+//РћР±СЂР°Р±Р°С‚С‹РІР°СЋС‰РёР№ СЌР»РµРјРµСЂС‚(С‚СѓС‚ Рё РїСЂРѕРёСЃС…РѕРґРёС‚ РІСЃСЏ РјР°РіРёСЏ)
 void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    //Чистим всё, что содержит лишнюю информацию
+    //Р§РёСЃС‚РёРј РІСЃС‘, С‡С‚Рѕ СЃРѕРґРµСЂР¶РёС‚ Р»РёС€РЅСЋСЋ РёРЅС„РѕСЂРјР°С†РёСЋ
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    //Обновлеям фильтры
+    //РћР±РЅРѕРІР»РµСЏРј С„РёР»СЊС‚СЂС‹
     updateFilters();
     
-    //Буфер
+    //Р‘СѓС„РµСЂ
     juce::dsp::AudioBlock<float> block(buffer);
     
-    //Вытаскиваем из буфера оборачиваем в контекст и обновляем 
-    //Потоки(музыкальная информация прогоняется через фильтры)
+    //Р’С‹С‚Р°СЃРєРёРІР°РµРј РёР· Р±СѓС„РµСЂР° РѕР±РѕСЂР°С‡РёРІР°РµРј РІ РєРѕРЅС‚РµРєСЃС‚ Рё РѕР±РЅРѕРІР»СЏРµРј 
+    //РџРѕС‚РѕРєРё(РјСѓР·С‹РєР°Р»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ РїСЂРѕРіРѕРЅСЏРµС‚СЃСЏ С‡РµСЂРµР· С„РёР»СЊС‚СЂС‹)
     auto leftBlock = block.getSingleChannelBlock(0);
     auto rightBlock = block.getSingleChannelBlock(1);
     
@@ -187,21 +187,21 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
 }
 
 //==============================================================================
-//Есть ли редактор на экране
+//Р•СЃС‚СЊ Р»Рё СЂРµРґР°РєС‚РѕСЂ РЅР° СЌРєСЂР°РЅРµ
 bool SimpleEQAudioProcessor::hasEditor() const
 {
     return true;
 }
 
-//Создание музыкального редактора
+//РЎРѕР·РґР°РЅРёРµ РјСѓР·С‹РєР°Р»СЊРЅРѕРіРѕ СЂРµРґР°РєС‚РѕСЂР°
 juce::AudioProcessorEditor* SimpleEQAudioProcessor::createEditor(){
-    //Передаём ссылка на объект AudioProcessor
+    //РџРµСЂРµРґР°С‘Рј СЃСЃС‹Р»РєР° РЅР° РѕР±СЉРµРєС‚ AudioProcessor
     return new SimpleEQAudioProcessor(*this);
 }
 
 //==============================================================================
-//Получение информации о состоянии блока, где хранятся данные(используется для 
-//долгосрочного хранения комплексной информации)
+//РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ СЃРѕСЃС‚РѕСЏРЅРёРё Р±Р»РѕРєР°, РіРґРµ С…СЂР°РЅСЏС‚СЃСЏ РґР°РЅРЅС‹Рµ(РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ 
+//РґРѕР»РіРѕСЃСЂРѕС‡РЅРѕРіРѕ С…СЂР°РЅРµРЅРёСЏ РєРѕРјРїР»РµРєСЃРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё)
 void SimpleEQAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
     juce::MemoryOutputStream mos(destData, true);
@@ -209,8 +209,8 @@ void SimpleEQAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 }
 
 
-// Используется для восстановления сохранённых параметров из памяти
-// Которые были ранее созданы с помощью метода getStateInformation
+// РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ СЃРѕС…СЂР°РЅС‘РЅРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РёР· РїР°РјСЏС‚Рё
+// РљРѕС‚РѕСЂС‹Рµ Р±С‹Р»Рё СЂР°РЅРµРµ СЃРѕР·РґР°РЅС‹ СЃ РїРѕРјРѕС‰СЊСЋ РјРµС‚РѕРґР° getStateInformation
 void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBytes){
     auto tree = juce::ValueTree::readFromData(data, sizeInBytes);
     if( tree.isValid() )
@@ -220,7 +220,7 @@ void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBy
     }
 }
 
-//Создание цепи параметров для фильтрации
+//РЎРѕР·РґР°РЅРёРµ С†РµРїРё РїР°СЂР°РјРµС‚СЂРѕРІ РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё
 ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
 {
     ChainSettings settings;
@@ -240,7 +240,7 @@ ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
     return settings;
 }
 
-//Создание коэффициентов(фильтра) для пиковой частоты
+//РЎРѕР·РґР°РЅРёРµ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ(С„РёР»СЊС‚СЂР°) РґР»СЏ РїРёРєРѕРІРѕР№ С‡Р°СЃС‚РѕС‚С‹
 Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate)
 {
     return juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
@@ -249,55 +249,55 @@ Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRat
                                                                   juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
 }
 
-//Обновление  фильтров пиковой частоты
+//РћР±РЅРѕРІР»РµРЅРёРµ  С„РёР»СЊС‚СЂРѕРІ РїРёРєРѕРІРѕР№ С‡Р°СЃС‚РѕС‚С‹
 void SimpleEQAudioProcessor::updatePeakFilter(const ChainSettings &chainSettings)
 {
-    //получение коэффициентов
+    //РїРѕР»СѓС‡РµРЅРёРµ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ
     auto peakCoefficients = makePeakFilter(chainSettings, getSampleRate());
     
     leftChain.setBypassed<ChainPositions::Peak>(chainSettings.peakBypassed);
     rightChain.setBypassed<ChainPositions::Peak>(chainSettings.peakBypassed);
     
-    //Обновление на левом канале
+    //РћР±РЅРѕРІР»РµРЅРёРµ РЅР° Р»РµРІРѕРј РєР°РЅР°Р»Рµ
     updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
-    //Обновление на правом канале
+    //РћР±РЅРѕРІР»РµРЅРёРµ РЅР° РїСЂР°РІРѕРј РєР°РЅР°Р»Рµ
     updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
 }
 
-//Обновление коэффициентов
+//РћР±РЅРѕРІР»РµРЅРёРµ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ
 void updateCoefficients(Coefficients &old, const Coefficients &replacements)
 {
     *old = *replacements;
 }
 
-//Обновление низкочастотных фильтров
+//РћР±РЅРѕРІР»РµРЅРёРµ РЅРёР·РєРѕС‡Р°СЃС‚РѕС‚РЅС‹С… С„РёР»СЊС‚СЂРѕРІ
 void SimpleEQAudioProcessor::updateLowCutFilters(const ChainSettings &chainSettings)
 {
-    //Создание коэффициентов для низкочастотного фильтра
+    //РЎРѕР·РґР°РЅРёРµ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ РґР»СЏ РЅРёР·РєРѕС‡Р°СЃС‚РѕС‚РЅРѕРіРѕ С„РёР»СЊС‚СЂР°
     auto cutCoefficients = makeLowCutFilter(chainSettings, getSampleRate());
-    //Левый низкочастотный поток
+    //Р›РµРІС‹Р№ РЅРёР·РєРѕС‡Р°СЃС‚РѕС‚РЅС‹Р№ РїРѕС‚РѕРє
     auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
-    //Правый низкочастотный поток
+    //РџСЂР°РІС‹Р№ РЅРёР·РєРѕС‡Р°СЃС‚РѕС‚РЅС‹Р№ РїРѕС‚РѕРє
     auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
     
-    //Устанавливаем фильтры в соответствующие обрабатывающие цепочки
+    //РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С„РёР»СЊС‚СЂС‹ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ РѕР±СЂР°Р±Р°С‚С‹РІР°СЋС‰РёРµ С†РµРїРѕС‡РєРё
     leftChain.setBypassed<ChainPositions::LowCut>(chainSettings.lowCutBypassed);
     rightChain.setBypassed<ChainPositions::LowCut>(chainSettings.lowCutBypassed);
     
-    //Обновляем фильтры 
+    //РћР±РЅРѕРІР»СЏРµРј С„РёР»СЊС‚СЂС‹ 
     updateCutFilter(rightLowCut, cutCoefficients, chainSettings.lowCutSlope);
     updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
 }
 
-//Функция обновления частотных фильтров//
+//Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ С‡Р°СЃС‚РѕС‚РЅС‹С… С„РёР»СЊС‚СЂРѕРІ//
 void SimpleEQAudioProcessor::updateHighCutFilters(const ChainSettings &chainSettings)
 {
-    //Создание фильтра высоких частот
+    //РЎРѕР·РґР°РЅРёРµ С„РёР»СЊС‚СЂР° РІС‹СЃРѕРєРёС… С‡Р°СЃС‚РѕС‚
     auto highCutCoefficients = makeHighCutFilter(chainSettings, getSampleRate());
     
-    //фильтр высоких частот левого потока
+    //С„РёР»СЊС‚СЂ РІС‹СЃРѕРєРёС… С‡Р°СЃС‚РѕС‚ Р»РµРІРѕРіРѕ РїРѕС‚РѕРєР°
     auto& leftHighCut = leftChain.get<ChainPositions::HighCut>();
-    //фильтр высоких частот правого потока
+    //С„РёР»СЊС‚СЂ РІС‹СЃРѕРєРёС… С‡Р°СЃС‚РѕС‚ РїСЂР°РІРѕРіРѕ РїРѕС‚РѕРєР°
     auto& rightHighCut = rightChain.get<ChainPositions::HighCut>();
     
     leftChain.setBypassed<ChainPositions::HighCut>(chainSettings.highCutBypassed);
@@ -307,28 +307,28 @@ void SimpleEQAudioProcessor::updateHighCutFilters(const ChainSettings &chainSett
     updateCutFilter(rightHighCut, highCutCoefficients, chainSettings.highCutSlope);
 }
 
-//Функция обновления фильтров
+//Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ С„РёР»СЊС‚СЂРѕРІ
 void SimpleEQAudioProcessor::updateFilters()
 {
     auto chainSettings = getChainSettings(apvts);
-    //Обноаляет фильтр низких частот
+    //РћР±РЅРѕР°Р»СЏРµС‚ С„РёР»СЊС‚СЂ РЅРёР·РєРёС… С‡Р°СЃС‚РѕС‚
     updateLowCutFilters(chainSettings);
-    //Обновляет фильтр высоких частот
+    //РћР±РЅРѕРІР»СЏРµС‚ С„РёР»СЊС‚СЂ РІС‹СЃРѕРєРёС… С‡Р°СЃС‚РѕС‚
     updatePeakFilter(chainSettings);
-    //Обновляет фильтр высоких частот
+    //РћР±РЅРѕРІР»СЏРµС‚ С„РёР»СЊС‚СЂ РІС‹СЃРѕРєРёС… С‡Р°СЃС‚РѕС‚
     updateHighCutFilters(chainSettings);
 }
 
-/**Инициализирует модель редактора и возвращает модель раскладки
+/**РРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РјРѕРґРµР»СЊ СЂРµРґР°РєС‚РѕСЂР° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ РјРѕРґРµР»СЊ СЂР°СЃРєР»Р°РґРєРё
 * 
-* Добавляет в выкладку ползунки для изменения:
-* - Низких частот
-* - Высоких частот
-* - усиление пиковой частоты
-* - Пиковое качество
-* - А также выключатели для этих параметров
+* Р”РѕР±Р°РІР»СЏРµС‚ РІ РІС‹РєР»Р°РґРєСѓ РїРѕР»Р·СѓРЅРєРё РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ:
+* - РќРёР·РєРёС… С‡Р°СЃС‚РѕС‚
+* - Р’С‹СЃРѕРєРёС… С‡Р°СЃС‚РѕС‚
+* - СѓСЃРёР»РµРЅРёРµ РїРёРєРѕРІРѕР№ С‡Р°СЃС‚РѕС‚С‹
+* - РџРёРєРѕРІРѕРµ РєР°С‡РµСЃС‚РІРѕ
+* - Рђ С‚Р°РєР¶Рµ РІС‹РєР»СЋС‡Р°С‚РµР»Рё РґР»СЏ СЌС‚РёС… РїР°СЂР°РјРµС‚СЂРѕРІ
 * 
-* - Также создаётся список дБ на октаву
+* - РўР°РєР¶Рµ СЃРѕР·РґР°С‘С‚СЃСЏ СЃРїРёСЃРѕРє РґР‘ РЅР° РѕРєС‚Р°РІСѓ
 **/
 juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::createParameterLayout()
 {
@@ -379,7 +379,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::crea
 }
 
 //==============================================================================
-// Создаёт новый объект плагина.
+// РЎРѕР·РґР°С‘С‚ РЅРѕРІС‹Р№ РѕР±СЉРµРєС‚ РїР»Р°РіРёРЅР°.
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new SimpleEQAudioProcessor();
