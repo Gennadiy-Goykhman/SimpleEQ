@@ -244,26 +244,31 @@ ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
     return settings;
 }
 
+//Создание коэффициентов(фильтра) для пиковой частоты
 Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate)
 {
     return juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
                                                                chainSettings.peakFreq,
                                                                chainSettings.peakQuality,
-                                                               juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
+                                                                  juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
 }
 
-//
+//Обновление  фильтров пиковой частоты
 void SimpleEQAudioProcessor::updatePeakFilter(const ChainSettings &chainSettings)
 {
+    //получение коэффициентов
     auto peakCoefficients = makePeakFilter(chainSettings, getSampleRate());
     
     leftChain.setBypassed<ChainPositions::Peak>(chainSettings.peakBypassed);
     rightChain.setBypassed<ChainPositions::Peak>(chainSettings.peakBypassed);
     
+    //Обновление на левом канале
     updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
+    //Обновление на правом канале
     updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
 }
 
+//Обновление коэффициентов
 void updateCoefficients(Coefficients &old, const Coefficients &replacements)
 {
     *old = *replacements;
