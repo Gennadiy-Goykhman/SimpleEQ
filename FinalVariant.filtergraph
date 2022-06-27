@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FILTERGRAPH>
+  <FILTER uid="3" x="0.45625" y="0.657258064516129">
+    <PLUGIN name="Audio Output" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uniqueId="724248cb"
+            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="2"
+            numOutputs="0" isShell="0" uid="724248cb"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="6" x="0.575" y="0.4233870967741936" uiLastX_Normal="447"
+          uiLastY_Normal="319" uiopen_Normal="1">
+    <PLUGIN name="SimpleEQ" format="VST3" category="Fx" manufacturer="yourcompany"
+            version="1.0.0" file="C:\Users\gennadiygoykhman\StudioProjects\SimpleEQ\SimpleEQ\SimpleEQ\Builds\VisualStudio2022\x64\Debug\VST3\SimpleEQ.vst3"
+            uniqueId="5a3a925" isInstrument="0" fileTime="181a436ff52" infoUpdateTime="181a43e3f20"
+            numInputs="2" numOutputs="2" isShell="0" uid="e95c2175"/>
+    <STATE>879.VMjLgX1....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9TyM03BTEwlXmAiUYoWUrIVdA4hKAImKTETRUAUSAAkKBolQY4BQlQTQDoVXmcmUjUSUrIlYToVXmkjQgsVTF4RLEYTXvTkQtDjZtDjKt3hKt3hKtX2JC4BTEoFUAACQtDDRPokZAAkKRQkKR81XFo0PUczXlgDUjYWQwHVdUYTVtf0UXIWUWkkKDAkPD4hKt3hKt3hKt3hKt3RUPIUQTMkKDYlKuEkQtDzLPEDRqESVt0DUioWPnEEdUYkXtf0UXIWUWkkKDAkPD4hKt3hKt3BYkwDTt3RUPIUQTMkKDYlKuEkQtDzMPEDRqESVt0DUioWP3Qkb3XjXqEjYic1cVM1ZAAkKIAkKt3hKt3hKt3hPtDjKTETRUAUSAAkKBolQY4BQPQTQ1oWXxzDUioWPnAEMAcEV40zUYoVPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKt3hKtPUPIUETMEDTtHjZFkkKDA0PEYmdgISSTMldAgVT3UkUh4BVWgkbUcUVtPDTBQjKt3hKt3hKtX2PP4hKUAkTEQ0TtPjYt7VTF4RPy.UPLgSLiMTUGMlYLUTX0EzUY4BVWgkbUcUVtPDTBQjKt3hKt3hKtXlKP4hKUAkTEQ0TtPjYt7VTF4RP2.UPPUkUXEWPnAEMAcEV40zUYoVPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKt3hKtPUPIUETMEDTtHjZFkkKDYmPE4RUYc1bFgjQIcUV2EjYic1cVM1ZAAkKIAkKt3hKt3hKt3RStDjKTETRUAUSAAkKBolQY4BQ1ITQtTUVmMmQHcTQVoEcAY1XmcmUisVPP4RRP4hKt3hKt3hKt3jKA4BUAkTUP0TPP4hPpYTVtPjYCUjKUk0YyYDRQU0UXI2ZFMFMAY1XmcmUisVPP4RRP4hKt3hKt3hKt3hKA4hKt3hKt3hKt3hKtQUUCUEQTg2ZrM1YQcUVDUjQicVPP4RPHQEY1UTLhkWPP4RPL4hKi4hKt3hKt3hKtXlTU0DUQAURWoULEYzXqEEUXoWQFwyKIMzasA2atUlaz4COuX0TTMCTrU2Yo41TzEFck4C.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="7" x="0.41125" y="0.2116935483870968" uiLastX_Normal="140"
+          uiLastY_Normal="43" uiopen_Normal="1">
+    <PLUGIN name="AudioFilePlayer" format="VST3" category="Fx" manufacturer="yourcompany"
+            version="1.0.0" file="C:\Users\gennadiygoykhman\StudioProjects\SimpleEQ\AudioFilePlayer\AudioFilePlayer\Builds\VisualStudio2022\x64\Debug\VST3\AudioFilePlayer.vst3"
+            uniqueId="599a1e9" isInstrument="0" fileTime="1819ca0c7e0" infoUpdateTime="181a43e3f20"
+            numInputs="2" numOutputs="2" isShell="0" uid="e95bfad6"/>
+    <STATE>346.VMjLgDU....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9DyM03BTIISX1UEaho2ZVkUdAAkKAwDUigWRWkEcQ0VTucmUY4BQ1UUQLolShUELhsVRxHlXiYUVzQiUXo1ZVQVa3XEYwclUgcFMFcEQ3DyXzcWLgcVTwHlXUQ0X3giQhsVPRsjYPUjVqEDZQ8FMVgkbAgGT0UUagoWTwDlLzXDRtwTUZQ2XFE1ZAgVUqkjLh8FNrE1ayHUX10zPt3hKt3hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEVtPDTtHzZGI1YMIiXtPDTtLjKPcjKt3hKt3hKt3haTU0PUQDU3sFaicVTWkEQEYzXmEDOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="8" x="0.52625" y="0.07661290322580645">
+    <PLUGIN name="Audio Input" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uniqueId="246006c0"
+            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
+            numOutputs="2" isShell="0" uid="246006c0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <CONNECTION srcFilter="6" srcChannel="0" dstFilter="3" dstChannel="0"/>
+  <CONNECTION srcFilter="6" srcChannel="1" dstFilter="3" dstChannel="1"/>
+  <CONNECTION srcFilter="7" srcChannel="0" dstFilter="6" dstChannel="0"/>
+  <CONNECTION srcFilter="7" srcChannel="1" dstFilter="6" dstChannel="1"/>
+  <CONNECTION srcFilter="8" srcChannel="0" dstFilter="7" dstChannel="0"/>
+  <CONNECTION srcFilter="8" srcChannel="1" dstFilter="7" dstChannel="1"/>
+</FILTERGRAPH>
